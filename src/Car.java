@@ -18,6 +18,7 @@ public class Car {
     private final int numberOfPlace;
 
     private boolean tireOfSeason;
+    private Key key;
 
     public Car(String brand,
                String model,
@@ -26,7 +27,7 @@ public class Car {
                Integer year,
                Double engineVolume
     ) {
-        this (brand,  model, country, color,  year,  engineVolume, "МКПП", "седан", "х000хх000",5,true);
+        this (brand,  model, country, color,  year,  engineVolume, "МКПП", "седан", "х000хх000",5,true,new Key());
 
     }
 
@@ -41,7 +42,8 @@ public class Car {
                String bodyOfTape,
                String regNumber,
                Integer numberOfPlace,
-               boolean tireOfSeason
+               boolean tireOfSeason,
+               Key key
                ) {
 
         if(brand==null) {
@@ -91,6 +93,13 @@ public class Car {
         }else {
             this.bodyOfTape=bodyOfTape;
         }
+        if(key==null) {
+            this.key=new Key();
+        }else {
+            this.key=key;
+        }
+
+
         this.numberOfPlace=numberOfPlace;
         this.tireOfSeason=tireOfSeason;
 
@@ -197,5 +206,31 @@ public class Car {
     public int hashCode() {
         return Objects.hash(brand, model, year);
     }
+
+    public static class Key{
+        private final  boolean remoteRunEng;
+        private final  boolean withoutKeyRan;
+
+        public Key(boolean remoteRunEng, boolean withoutKeyRan) {
+
+            this.remoteRunEng = remoteRunEng;
+            this.withoutKeyRan = withoutKeyRan;
+        }
+
+        public Key (){
+
+            this(false,false);
+        }
+
+        public boolean isRemoteRunEng() {
+            return remoteRunEng;
+        }
+
+        public boolean isWithoutKeyRan() {
+            return withoutKeyRan;
+        }
+    }
+
+
 }
 
